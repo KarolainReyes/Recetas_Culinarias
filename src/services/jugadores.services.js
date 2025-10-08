@@ -4,6 +4,7 @@ const COLECCION_USUARIOS = "usuarios"
 
 export async function obtenerUsuarios(){
     return await obtenerBD().collection(COLECCION_USUARIOS).find().toArray();
+    
 }
 
 export async function obtenerUsuarioPorId(id){
