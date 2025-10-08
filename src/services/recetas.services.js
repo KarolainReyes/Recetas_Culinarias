@@ -2,7 +2,7 @@ import { obtenerDB } from "../config/db.js";
 
 const COLECCION_RECETAS = "recetas"
 
-export async function obtenerReceta() {
+export async function obtenerRecetas() {
     return await obtenerDB().collection(COLECCION_RECETAS).find().toArray();
 }
 
