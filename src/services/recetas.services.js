@@ -2,8 +2,12 @@ import { obtenerDB } from "../config/db.js";
 
 const COLECCION_RECETAS = "recetas"
 
-export async function obtenerJugadores() {
+export async function obtenerReceta() {
     return await obtenerDB().collection(COLECCION_RECETAS).find().toArray();
+}
+
+export async function obtenerRecetaPorId(id) {
+    return await obtenerDB().collection(COLECCION_RECETAS).findOne({id});
 }
 
 export async function crearReceta(datos) {
@@ -22,23 +26,18 @@ export async function crearReceta(datos) {
     return { message: "Receta creada!"}
 }
 
+
 export async function actualizarReceta (id, datos){
     //crear validador de campos
 }
 
-export async function eliminarReceta(params) {
-    
+export async function eliminarReceta(id) {
+    const resultado = await obtenerDB().collection(COLECCION_RECETAS).deleteOne({id});
+    if (resultado.deleteCount === 0){
+        throw new Error("Jugador no encontrado");
+    }
+    return {message: "Jugador eliminado!"}
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
