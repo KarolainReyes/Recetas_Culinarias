@@ -7,7 +7,7 @@ import { obtenerRecetas,
 
 export async function obtenerTodasLasRecetas(req, res) {
     try {
-        const recetas = await obtenerReceta();
+        const recetas = await obtenerRecetas();
         res.status(200).json(recetas)
     } catch (error) {
         res.status(500).json({error: "Error al obtener todas las recetas"})
