@@ -1,6 +1,6 @@
 import { ObjectId } from "mongodb";
-import * as ingredientService from "../services/ingredients.services.js";
-import * as recipeService from "../services/recetas.services.js";
+import { agregarIngredienteAReceta, eliminarIngredienteDeReceta, buscarRecetasPorIngrediente } from "../services/ingredients.services.js";
+import { obtenerRecetaPorId } from "../services/recetas.services.js";
 
 
 // Función auxiliar para validar ID y obtener la receta
@@ -8,7 +8,7 @@ async function validateAndGetRecipe(recipeId) {
     if (!ObjectId.isValid(recipeId)) {
         return { error: { status: 400, message: "El ID de la receta no es válido." } };
     }
-    const recipe = await recipeService.obtenerRecetaPorId(recipeId);
+    const recipe = await obtenerRecetaPorId(recipeId);
     if (!recipe) {
         return { error: { status: 404, message: "Receta no encontrada." } };
     }
@@ -33,7 +33,7 @@ export const addIngredient = async (req, res) => {
             _id: new ObjectId(),
             nombre,
         };
-        await ingredientService.agregarIngredienteAReceta(recipeId, newIngredient);
+        await agregarIngredienteAReceta(recipeId, newIngredient);
         res.status(201).json({ message: "Ingrediente agregado con éxito", ingredient: newIngredient });
     } catch (error) {
         res.status(500).json({ error: "Error al agregar ingrediente", details: error.message });
@@ -80,7 +80,7 @@ export const deleteIngredient = async (req, res) => {
             return res.status(404).json({ error: "Ingrediente no encontrado en esta receta." });
         }
 
-        const result = await ingredientService.eliminarIngredienteDeReceta(recipeId, ingredientId);
+        const result = await eliminarIngredienteDeReceta(recipeId, ingredientId);
         if (result.modifiedCount === 0) {
             return res.status(500).json({ error: "No se pudo eliminar el ingrediente." });
         }
@@ -98,7 +98,7 @@ export const searchRecipesByIngredient = async (req, res) => {
         if (!ingredient) {
             return res.status(400).json({ error: "Debe proporcionar un nombre de ingrediente para la búsqueda." });
         }
-        const recipes = await ingredientService.buscarRecetasPorIngrediente(ingredient);
+        const recipes = await buscarRecetasPorIngrediente(ingredient);
         res.json(recipes);
     } catch (error) {
         res.status(500).json({ error: "Error al buscar recetas", details: error.message });
