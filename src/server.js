@@ -2,7 +2,7 @@
 import express from "express";
 import 'dotenv/config'
 import { conectarBD } from "./config/db.js";
-import routerJugadores from "./routers/jugadores.routes.js";
+import routerUsuarios from "./routers/usuarios.router.js";
 
 
 //Config
@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 
 //Routers
-app.use("/jugadores", routerJugadores);
+app.use("/usuarios", routerUsuarios);
 
 
 app.get("/health", (req, res)=>{

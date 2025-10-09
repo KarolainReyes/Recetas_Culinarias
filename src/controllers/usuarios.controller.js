@@ -1,4 +1,4 @@
-import { obtenerusuarios, 
+import { obtenerUsuarios, 
     obtenerUsuarioPorId, 
     crearUsuario, 
     actualizarUsuario, 
@@ -7,7 +7,7 @@ import { obtenerusuarios,
 
 export async function obtenerTodosLosusuarios(req, res) {
     try {
-        const usuarios = await obtenerusuarios();
+        const usuarios = await obtenerUsuarios();
         res.status(200).json(usuarios);
     } catch (error) {
         res.status(500).json({error: "Error al obtener todos los usuarios"});

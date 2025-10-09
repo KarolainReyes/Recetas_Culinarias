@@ -8,7 +8,8 @@ export async function obtenerUsuarios(){
 }
 
 export async function obtenerUsuarioPorId(id){
-    return await obtenerBD().collection(COLECCION_USUARIOS).findOne(id);
+    const result = await obtenerBD().collection(COLECCION_USUARIOS).findOne({id});
+    return result;
 }
 
 export async function crearUsuario(datos){

@@ -1,5 +1,6 @@
 import { Router } from "express";
-import { obtenerTodosLosUsuarios,
+import { 
+    obtenerTodosLosusuarios,
     obtenerUsuario,
     crearUnUsuario,
     actualizarUnUsuario,
@@ -8,7 +9,7 @@ import { obtenerTodosLosUsuarios,
 
 const router = Router();
 
-router.get("/", obtenerTodosLosUsuarios);
+router.get("/", obtenerTodosLosusuarios);
 router.get("/:id", obtenerUsuario);
 router.post("/", crearUnUsuario);
 router.patch("/:id", actualizarUnUsuario);
