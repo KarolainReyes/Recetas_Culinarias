@@ -3,7 +3,8 @@ import { obtenerRecetas,
     crearReceta,
     actualizarReceta,
     eliminarReceta,
-    obtenerRecetasPorCliente
+    obtenerRecetasPorCliente,
+    añadirIngredientes,eliminarIngredientes
 } from "../services/recetas.services.js";
 import { validationResult } from "express-validator";
 
@@ -70,7 +71,17 @@ export async function eliminarUnaReceta(req, res) {
 export async function añadirIngrediente(req, res) {
     try {
         const id = parseInt(req.params.id);
-        const result = await añadirIngrediente(id,req.body);
+        const result = await añadirIngredientes(id,req.body);
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(404).json({error: error.message})
+    }
+}
+
+export async function eliminarIngrediente(req, res) {
+    try {
+        const id = parseInt(req.params.id);
+        const result = await eliminarIngredientes(id,req.body.nombre);
         res.status(200).json(result)
     } catch (error) {
         res.status(404).json({error: error.message})

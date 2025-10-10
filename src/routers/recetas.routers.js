@@ -5,7 +5,7 @@ import { obtenerTodasLasRecetas,
     actualizarUnaReceta,
     eliminarUnaReceta,
     obtenerUnaRecetaPorCliente,
-    añadirIngrediente
+    añadirIngrediente,eliminarIngrediente
  } from "../controllers/recetas.controllers.js";
 import { crearRecetaDTO, actualizarRecetaDTO } from "../dtos/recetas_dtos.js";
 import { validationDTO } from "../middlewares/validationDTO.js";
@@ -15,7 +15,8 @@ import { obtenerRecetasPorCliente } from "../services/recetas.services.js";
 
  router.get("/", obtenerTodasLasRecetas);
  router.get("/:id", obtenerUnaReceta);
- router.put("/ingredientes/:id",añadirIngrediente)
+ router.put("/ingredientesAñadir/:id",añadirIngrediente);
+  router.put("/ingredientesEliminar/:id",eliminarIngrediente)
  router.get("/cliente/:nombre",obtenerUnaRecetaPorCliente)
  router.post("/", crearRecetaDTO, validationDTO,crearUnaReceta);
  router.patch("/:id", actualizarRecetaDTO, validationDTO, actualizarUnaReceta,);

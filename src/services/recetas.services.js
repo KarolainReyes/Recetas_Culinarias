@@ -53,15 +53,21 @@ export async function eliminarReceta(id) {
     return {message: "Receta eliminada!"}
 }
 
-export async function añadirIngrediente(id,ingrediente){
+export async function añadirIngredientes(id,ingrediente){
     const db=await obtenerDB()
-    const resultado = await db.collection(COLECCION_RECETAS).updateOne({id},{$push:{ingredientes:ingrediente}})
+    const resultado = await db.collection(COLECCION_RECETAS).updateOne({id},{$push:{ingredientes:ingrediente.nombre}})
     if (resultado.modifiedCount===0){throw new Error("Receta no encontrada");
     }
     return {message:"Ingredientes añadidos"}
 }
 
-
+export async function eliminarIngredientes(id,ingrediente){
+    const db=await obtenerDB()
+    const resultado = await db.collection(COLECCION_RECETAS).updateOne({id},{$pull:{ingredientes:ingrediente}})
+    if (resultado.modifiedCount===0){throw new Error("Receta no encontrada");
+    }
+    return {message:"Ingredientes eliminados"}
+}
 
 
 
