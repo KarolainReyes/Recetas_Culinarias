@@ -5,7 +5,14 @@ export const crearRecetaDTO = [
         .isInt()
         .notEmpty()
         .withMessage("El id debe ser un numero entero positivo"),
-        
+
+    body("nombreCliente")
+        .isString()
+        .trim()
+        .notEmpty()
+        .withMessage("El nombre del cliente es obligatorio y debe ser texto"),
+
+
     body("titulo")
         .isString()
         .trim()

@@ -14,10 +14,11 @@ export async function obtenerRecetaPorId(id) {
 }
 
 export async function crearReceta(datos) {
-    const {id, titulo, descripcion, dificultad, categoria, ingredientes } = datos
+    const {id, nombreCliente, titulo, descripcion, dificultad, categoria, ingredientes } = datos
 
     const receta = {
         id,
+        nombreCliente,
         titulo,
         descripcion,
         dificultad,
@@ -29,6 +30,11 @@ export async function crearReceta(datos) {
     return { message: "Receta creada!"}
 }
 
+export async function obtenerRecetasPorCliente(nombre){
+    const db = await obtenerDB()
+    const result = await db.collection(COLECCION_RECETAS).findOne({nombreCliente:nombre});
+    return result;
+}
 
 export async function actualizarReceta (id, datos){
     
@@ -47,8 +53,13 @@ export async function eliminarReceta(id) {
     return {message: "Receta eliminada!"}
 }
 
-
-
+export async function añadirIngrediente(id,ingrediente){
+    const db=await obtenerDB()
+    const resultado = await db.collection(COLECCION_RECETAS).updateOne({id},{$push:{ingredientes:ingrediente}})
+    if (resultado.modifiedCount===0){throw new Error("Receta no encontrada");
+    }
+    return {message:"Ingredientes añadidos"}
+}
 
 
 
