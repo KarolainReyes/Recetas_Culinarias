@@ -4,21 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"nodemon src/server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/KarolainReyes/Recetas_Culinarias.git"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
-  "bugs": {
-    "url": "https://github.com/KarolainReyes/Recetas_Culinarias/issues"
-  },
-  "homepage": "https://github.com/KarolainReyes/Recetas_Culinarias#readme",
   "dependencies": {
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
