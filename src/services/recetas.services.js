@@ -11,13 +11,13 @@ export async function obtenerRecetaPorId(id) {
 }
 
 export async function crearReceta(datos) {
-    const {id, titulo, descripcion, difultad, categoria, ingredientes } = datos
+    const {id, titulo, descripcion, dificultad, categoria, ingredientes } = datos
 
     const receta = {
         id,
         titulo,
         descripcion,
-        difultad,
+        dificultad,
         categoria,
         ingredientes
     }
@@ -28,7 +28,19 @@ export async function crearReceta(datos) {
 
 
 export async function actualizarReceta (id, datos){
-    
+    const {titulo, descripcion, dificultad, categoria, ingredientes} = datos
+
+    const recetaActualizada = {
+        titulo,
+        descripcion,
+        dificultad,
+        categoria,
+        ingredientes
+    }
+
+    const resultado = await obtenerBD().collection(COLECCION_RECETAS).updateOne({id},{$set: recetaActualizada});
+    if(resultado.matchedCount === 0) throw new Error("Receta no encontrada!!!");
+    return {message: "Receta modificada!!"};
 }
 
 export async function eliminarReceta(id) {
