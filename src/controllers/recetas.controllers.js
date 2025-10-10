@@ -3,7 +3,7 @@ import { obtenerRecetas,
     crearReceta,
     actualizarReceta,
     eliminarReceta
-} from "../services/recetas.services";
+} from "../services/recetas.services.js";
 import { validationResult } from "express-validator";
 
 export async function obtenerTodasLasRecetas(req, res) {

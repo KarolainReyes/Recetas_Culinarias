@@ -1,13 +1,13 @@
-import { obtenerDB } from "../config/db.js";
+import { obtenerBD } from "../config/db.js";
 
 const COLECCION_RECETAS = "recetas"
 
 export async function obtenerRecetas() {
-    return await obtenerDB().collection(COLECCION_RECETAS).find().toArray();
+    return await obtenerBD().collection(COLECCION_RECETAS).find().toArray();
 }
 
 export async function obtenerRecetaPorId(id) {
-    return await obtenerDB().collection(COLECCION_RECETAS).findOne({id});
+    return await obtenerBD().collection(COLECCION_RECETAS).findOne({id});
 }
 
 export async function crearReceta(datos) {
@@ -22,7 +22,7 @@ export async function crearReceta(datos) {
         ingredientes
     }
 
-    await obtenerDB().collection(COLECCION_RECETAS).insertOne(receta);
+    await obtenerBD().collection(COLECCION_RECETAS).insertOne(receta);
     return { message: "Receta creada!"}
 }
 
@@ -44,7 +44,7 @@ export async function actualizarReceta (id, datos){
 }
 
 export async function eliminarReceta(id) {
-    const resultado = await obtenerDB().collection(COLECCION_RECETAS).deleteOne({id});
+    const resultado = await obtenerBD().collection(COLECCION_RECETAS).deleteOne({id});
     if (resultado.deleteCount === 0){
         throw new Error("Jugador no encontrado");
     }

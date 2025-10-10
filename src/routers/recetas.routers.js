@@ -4,9 +4,9 @@ import { obtenerTodasLasRecetas,
     crearUnaReceta,
     actualizarUnaReceta,
     eliminarUnaReceta
- } from "../controllers/recetas.controllers";
-import { crearRecetaDTO, actualizarRecetaDTO } from "../dtos/recetas.dtos";
-import { validationDTO } from "../middlewares/validationDTO";
+ } from "../controllers/recetas.controllers.js";
+import { crearRecetaDTO, actualizarRecetaDTO } from "../dtos/recetas_dtos.js";
+import { validationDTO } from "../middlewares/validationDTO.js";
 
  const router = Router();
 
