@@ -4,6 +4,7 @@ import 'dotenv/config'
 import { conectarDB } from "./config/db.js";
 import routerUsuarios from "./routers/usuarios.router.js";
 import routerRecetas from "./routers/recetas.routers.js";
+import routerIngredientes from "./routers/ingredientes.routers.js"
 
 
 //Config
@@ -13,7 +14,7 @@ app.use(express.json());
 //Routers
 app.use("/usuarios", routerUsuarios);
 app.use("/recetas",routerRecetas);
-
+app.use("/ingredientes", routerIngredientes)
 
 app.get("/health", (req, res)=>{
     res.status(200).json({message: "Backend activo!!! ⚽️"});

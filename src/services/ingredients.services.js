@@ -1,6 +1,6 @@
 import { obtenerDB } from "../config/db.js";
 
-const COLECCION_INGREDIENTES = "Ingredientes"
+const COLECCION_INGREDIENTES = "ingredientes"
 
 
 
@@ -10,7 +10,7 @@ export async function obtenerIngredientes(){
 
 }
 
-export async function obtenerIngredientes(id){
+export async function obtenerIngredientesId(id){
     const db = await obtenerDB()
     const result = await db.collection(COLECCION_INGREDIENTES).findOne({id});
     return result;
@@ -25,7 +25,7 @@ export async function crearIngredientes(datos){
     return {message:"Ingrediente creado correctamente"};
 }
 
-export async function actualizaringredientes(id,datos) {
+export async function actualizarIngredientes(id,datos) {
     const {nombre,tipo} = datos;
     const db = await obtenerDB()
     const resultado = await db.collection(COLECCION_INGREDIENTES).updateOne({id},{$set:datos});
@@ -33,7 +33,7 @@ export async function actualizaringredientes(id,datos) {
     return {message: "Ingrediente modificado"};
 }
 
-export async function eliminarIngrediente(id){
+export async function eliminarIngredientes(id){
     const db = await obtenerDB()
     const resultado = await db.collection(COLECCION_INGREDIENTES).deleteOne({id});
     if(resultado.deletedCount===0){throw new Error("Ingrediente no encontrado");}
