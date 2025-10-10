@@ -1,7 +1,7 @@
-import { conectarBD, obtenerBD } from "./config/db.js";
+import { conectarDB, obtenerDB } from "./config/db.js";
 
 async function seed() {
-    await conectarBD();
+    await conectarDB();
 
     const jugadores = [
         {id: 1, nombre: "Carlos Mario", peso: 76, altura: 182, posicion: 1},
@@ -11,8 +11,8 @@ async function seed() {
         {id: 5, nombre: "Edgar", peso: 80, altura: 170, posicion: 6}
     ];
     
-    await obtenerBD().collection("jugadores").deleteMany();
-    await obtenerBD().collection("jugadores").insertMany(jugadores);
+    await obtenerDB().collection("jugadores").deleteMany();
+    await obtenerDB().collection("jugadores").insertMany(jugadores);
 
     console.log("BD poblada");
     process.exit();

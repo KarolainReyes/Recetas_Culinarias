@@ -17,9 +17,10 @@ export async function obtenerTodasLasRecetas(req, res) {
 
 export async function obtenerUnaReceta(req, res) {
     try {
-        const id = parseInt(req.paramas.id);
+        const id = parseInt(req.params.id);
         const receta = await obtenerRecetaPorId(id);
         if(!receta) return res.status(404).json({error: "Receta no encontrada"})
+        res.status(200).json(receta)
     } catch (error) {
         res.status(500).json({error: "Error al obtener la receta"})
     }
@@ -36,7 +37,7 @@ export async function crearUnaReceta(req, res) {
 
 export async function actualizarUnaReceta(req, res) {
     try {
-        const id = parseInt(req.paramas.id);
+        const id = parseInt(req.params.id);
         const result = await actualizarReceta(id, req.body);
         res.status(202).json(result)
     } catch (error) {
@@ -46,7 +47,7 @@ export async function actualizarUnaReceta(req, res) {
 
 export async function eliminarUnaReceta(req, res) {
     try {
-        const id = parseInt(req.paramas.id);
+        const id = parseInt(req.params.id);
         const result = await eliminarReceta(id);
         res.status(200).json(result)
     } catch (error) {

@@ -1,13 +1,16 @@
-import { obtenerBD } from "../config/db.js";
+import { obtenerDB } from "../config/db.js";
 
 const COLECCION_RECETAS = "recetas"
 
 export async function obtenerRecetas() {
-    return await obtenerBD().collection(COLECCION_RECETAS).find().toArray();
+    const db = await obtenerDB()
+    return await db.collection(COLECCION_RECETAS).find().toArray();
 }
 
 export async function obtenerRecetaPorId(id) {
-    return await obtenerBD().collection(COLECCION_RECETAS).findOne({id});
+    const db = await obtenerDB()
+    const result = await db.collection(COLECCION_RECETAS).findOne({id});
+    return result;
 }
 
 export async function crearReceta(datos) {
@@ -21,34 +24,27 @@ export async function crearReceta(datos) {
         categoria,
         ingredientes
     }
-
-    await obtenerBD().collection(COLECCION_RECETAS).insertOne(receta);
+    const db = await obtenerDB()
+    await db.collection(COLECCION_RECETAS).insertOne(receta);
     return { message: "Receta creada!"}
 }
 
 
 export async function actualizarReceta (id, datos){
-    const {titulo, descripcion, dificultad, categoria, ingredientes} = datos
-
-    const recetaActualizada = {
-        titulo,
-        descripcion,
-        dificultad,
-        categoria,
-        ingredientes
-    }
-
-    const resultado = await obtenerBD().collection(COLECCION_RECETAS).updateOne({id},{$set: recetaActualizada});
+    
+    const db = await obtenerDB()
+    const resultado = await db.collection(COLECCION_RECETAS).updateOne({id},{$set: datos});
     if(resultado.matchedCount === 0) throw new Error("Receta no encontrada!!!");
     return {message: "Receta modificada!!"};
 }
 
 export async function eliminarReceta(id) {
-    const resultado = await obtenerBD().collection(COLECCION_RECETAS).deleteOne({id});
-    if (resultado.deleteCount === 0){
-        throw new Error("Jugador no encontrado");
+    const db = await obtenerDB()
+    const resultado = await db.collection(COLECCION_RECETAS).deleteOne({id});
+    if (resultado.deletedCount === 0){
+        throw new Error("Receta no encontrada");
     }
-    return {message: "Jugador eliminado!"}
+    return {message: "Receta eliminada!"}
 }
 
 

@@ -1,10 +1,10 @@
 import { ObjectId } from "mongodb";
-import { obtenerBD } from "../config/db.js";
+import { obtenerDB } from "../config/db.js";
 
 const COLECCION_RECETAS = "recetas";
 
 async function obtenerColeccion() {
-    const db = await obtenerBD();
+    const db = await obtenerDB();
     return db.collection(COLECCION_RECETAS);
 }
 

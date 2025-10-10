@@ -7,7 +7,7 @@ const db_name = process.env.DB_NAME
 const cliente = new MongoClient (uri);
 let db;
 
-export async function conectarBD() {
+export async function conectarDB() {
     try {
         await cliente.connect();
         console.log("DB conectada!");
@@ -17,7 +17,7 @@ export async function conectarBD() {
     }
 }
 
-export async function obtenerBD() {
+export async function obtenerDB() {
     if(!db){
         throw new Error("No se ha conectado con la DB!");
     }

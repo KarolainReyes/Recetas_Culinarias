@@ -1,6 +1,11 @@
 import { body, param } from "express-validator";
 
 export const crearRecetaDTO = [
+    body("id")
+        .isInt()
+        .notEmpty()
+        .withMessage("El id debe ser un numero entero positivo"),
+        
     body("titulo")
         .isString()
         .trim()
