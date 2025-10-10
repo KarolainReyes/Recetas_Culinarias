@@ -1,43 +1,42 @@
 import { obtenerDB } from "../config/db.js";
 
-const COLECCION_USUARIOS = "usuarios"
+const COLECCION_INGREDIENTES = "Ingredientes"
 
 
 
-export async function obtenerUsuarios(){
+export async function obtenerIngredientes(){
     const db = await obtenerDB()
-    return await db.collection(COLECCION_USUARIOS).find().toArray();
-    
+    return await db.collection(COLECCION_INGREDIENTES).find().toArray();
+
 }
 
-export async function obtenerUsuarioPorId(id){
+export async function obtenerIngredientes(id){
     const db = await obtenerDB()
-    const result = await db.collection(COLECCION_USUARIOS).findOne({id});
+    const result = await db.collection(COLECCION_INGREDIENTES).findOne({id});
     return result;
 }
 
-export async function crearUsuario(datos){
-    const {id,nombre,edad,documento} = datos;
+export async function crearIngredientes(datos){
+    const {id,nombre,tipo} = datos;
 
-    const usuario = { id,nombre,edad,documento}
+    const Ingrediente = { id,nombre,tipo}
     const db = await obtenerDB()
-    await db.collection(COLECCION_USUARIOS).insertOne(usuario);
-    return {message:"Usuario creado correctamente"};
+    await db.collection(COLECCION_INGREDIENTES).insertOne(Ingrediente);
+    return {message:"Ingrediente creado correctamente"};
 }
 
-export async function actualizarUsuario(id,datos) {
-    const {nombre,edad,documento} = datos;
+export async function actualizaringredientes(id,datos) {
+    const {nombre,tipo} = datos;
     const db = await obtenerDB()
-    const resultado = await db.collection(COLECCION_USUARIOS).updateOne({id},{$set:datos});
-    if(resultado.matchedCount===0){throw new Error("Usuario no encontrado");}
-    return {message: "Usuario modificado"};
+    const resultado = await db.collection(COLECCION_INGREDIENTES).updateOne({id},{$set:datos});
+    if(resultado.matchedCount===0){throw new Error("Ingrediente no encontrado");}
+    return {message: "Ingrediente modificado"};
 }
 
-export async function eliminarUsuario(id){
+export async function eliminarIngrediente(id){
     const db = await obtenerDB()
-    const resultado = await db.collection(COLECCION_USUARIOS).deleteOne({id});
-    if(resultado.deletedCount===0){throw new Error("Usuario no encontrado");}
-    return {message:"Usuario eliminado"}
+    const resultado = await db.collection(COLECCION_INGREDIENTES).deleteOne({id});
+    if(resultado.deletedCount===0){throw new Error("Ingrediente no encontrado");}
+    return {message:"Ingrediente eliminado"}
 
 }
-

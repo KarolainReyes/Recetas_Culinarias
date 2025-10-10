@@ -1,20 +1,18 @@
 import { Router } from "express";
 import { 
-    obtenerTodosLosusuarios,
-    obtenerUsuario,
-    crearUnUsuario,
-    actualizarUnUsuario,
-    eliminarUnUsuario
- } from "../controllers/usuarios.controller.js";
- import { crearUsuarioDTO,actualizarUsuarioDTO } from "../dtos/usuarios_dtos.js";
+    obtenerIngredientes,
+    crearIngrediente,
+    actualizarIngrediente,
+    eliminarIngrediente
+ } from "../controllers/ingredientsController.js";
+ import { crearIngredienteDTO,actualizarIngredienteDTO } from "../dtos/ingredientes_dtos.js";
  import { validationDTO } from "../middlewares/validationDTO.js";
 
 const router = Router();
 
-router.get("/", obtenerTodosLosusuarios);
-router.get("/:id", obtenerUsuario);
-router.post("/", crearUsuarioDTO, validationDTO,crearUnUsuario);
-router.patch("/:id", actualizarUsuarioDTO, validationDTO, actualizarUnUsuario);
-router.delete("/:id", eliminarUnUsuario);
+router.get("/", obtenerIngredientes);
+router.post("/", crearIngredienteDTO, validationDTO, crearIngrediente);
+router.patch("/:id", actualizarIngredienteDTO, validationDTO, actualizarIngrediente);
+router.delete("/:id", eliminarIngrediente);
 
 export default router;
