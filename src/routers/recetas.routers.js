@@ -5,14 +5,15 @@ import { obtenerTodasLasRecetas,
     actualizarUnaReceta,
     eliminarUnaReceta
  } from "../controllers/recetas.controllers";
-import { eliminarReceta } from "../services/recetas.services";
+import { crearRecetaDTO, actualizarRecetaDTO } from "../dtos/recetas.dtos";
+import { validationDTO } from "../middlewares/validationDTO";
 
  const router = Router();
 
  router.get("/", obtenerTodasLasRecetas);
  router.get("/:id", obtenerUnaReceta);
- router.post("/", crearUnaReceta);
- router.patch("/:id", actualizarUnaReceta);
+ router.post("/", crearRecetaDTO, validationDTO,crearUnaReceta);
+ router.patch("/:id", actualizarRecetaDTO, validationDTO, actualizarUnaReceta,);
  router.delete("/:id", eliminarUnaReceta);
 
  export default router;

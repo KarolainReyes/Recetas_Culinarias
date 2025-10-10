@@ -28,7 +28,7 @@ export async function crearReceta(datos) {
 
 
 export async function actualizarReceta (id, datos){
-    //crear validador de campos
+    
 }
 
 export async function eliminarReceta(id) {

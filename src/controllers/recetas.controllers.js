@@ -4,6 +4,7 @@ import { obtenerRecetas,
     actualizarReceta,
     eliminarReceta
 } from "../services/recetas.services";
+import { validationResult } from "express-validator";
 
 export async function obtenerTodasLasRecetas(req, res) {
     try {
