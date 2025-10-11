@@ -219,6 +219,10 @@ La API devuelve respuestas claras ante errores comunes:
 
 ---
 
+## 📹 Video de explicación
+
+[Click aquí](https://drive.google.com/drive/folders/1A6YqD86QwoumMLgc-36kQClyLo6-NibV?usp=sharing)
+
 ## 🧩 Autores
 
 * [Karolain Reyes](https://github.com/KarolainReyes)
