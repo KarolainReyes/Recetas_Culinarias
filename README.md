@@ -221,7 +221,7 @@ La API devuelve respuestas claras ante errores comunes:
 
 ## 📹 Video de explicación
 
-[Click aquí](https://drive.google.com/drive/folders/1A6YqD86QwoumMLgc-36kQClyLo6-NibV?usp=sharing)
+[Click aquí](https://drive.google.com/file/d/10Hj_UZP4LREZMDzPToij_8Kr5dQHNF7j/view?usp=drivesdk )
 
 ## 🧩 Autores
 
